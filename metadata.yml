@@ -1,0 +1,559 @@
+--- !ruby/object:Gem::Specification
+name: wright
+version: !ruby/object:Gem::Version
+  version: 0.3.0
+platform: ruby
+authors:
+- Sebastian Boehm
+autorequire: 
+bindir: bin
+cert_chain: []
+date: 2015-04-23 00:00:00.000000000 Z
+dependencies:
+- !ruby/object:Gem::Dependency
+  name: minitest
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 5.6.0
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 5.6.0
+- !ruby/object:Gem::Dependency
+  name: minitest-stub-const
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: '0.4'
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: '0.4'
+- !ruby/object:Gem::Dependency
+  name: fakefs
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.6.7
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.6.7
+- !ruby/object:Gem::Dependency
+  name: fakeetc
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.2.0
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.2.0
+- !ruby/object:Gem::Dependency
+  name: rake
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 10.4.2
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 10.4.2
+- !ruby/object:Gem::Dependency
+  name: yard
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.8.7.6
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.8.7.6
+- !ruby/object:Gem::Dependency
+  name: simplecov
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.10.0
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.10.0
+- !ruby/object:Gem::Dependency
+  name: pry
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.10.1
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.10.1
+- !ruby/object:Gem::Dependency
+  name: rubocop
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.30.1
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 0.30.1
+description: |
+  Wright is a lightweight configuration management library.
+email:
+- sebastian@sometimesfood.org
+executables:
+- wright
+extensions: []
+extra_rdoc_files: []
+files:
+- Rakefile
+- README.md
+- CONTRIBUTING.md
+- LICENSE
+- NEWS.md
+- man/wright.1
+- bin/wright
+- lib/wright/cli.rb
+- lib/wright/config.rb
+- lib/wright/dry_run.rb
+- lib/wright/dsl.rb
+- lib/wright/logger.rb
+- lib/wright/provider/directory.rb
+- lib/wright/provider/file.rb
+- lib/wright/provider/group/darwin_directory_service.rb
+- lib/wright/provider/group/gnu_passwd.rb
+- lib/wright/provider/group.rb
+- lib/wright/provider/package/apt.rb
+- lib/wright/provider/package/homebrew.rb
+- lib/wright/provider/package.rb
+- lib/wright/provider/symlink.rb
+- lib/wright/provider/user/darwin_directory_service.rb
+- lib/wright/provider/user/gnu_passwd.rb
+- lib/wright/provider/user.rb
+- lib/wright/provider.rb
+- lib/wright/resource/directory.rb
+- lib/wright/resource/file.rb
+- lib/wright/resource/group.rb
+- lib/wright/resource/package.rb
+- lib/wright/resource/symlink.rb
+- lib/wright/resource/user.rb
+- lib/wright/resource.rb
+- lib/wright/util/color.rb
+- lib/wright/util/file.rb
+- lib/wright/util/file_owner.rb
+- lib/wright/util/file_permissions.rb
+- lib/wright/util/recursive_autoloader.rb
+- lib/wright/util/stolen_from_activesupport.rb
+- lib/wright/util/user.rb
+- lib/wright/util.rb
+- lib/wright/version.rb
+- lib/wright.rb
+- spec/cli/shebang.rb
+- spec/cli_spec.rb
+- spec/config_spec.rb
+- spec/dsl_spec.rb
+- spec/logger_spec.rb
+- spec/provider/directory_spec.rb
+- spec/provider/file_spec.rb
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership.return
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership.stderr
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership.stdout
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_permission-denied-user.return
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_permission-denied-user.stderr
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_permission-denied-user.stdout
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_user1_user2.return
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_user1_user2.stderr
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_user1_user2.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_1234_newgroup.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_1234_newgroup.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_1234_newgroup.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_2_newgroup.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_2_newgroup.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_2_newgroup.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_ERROR_newgroup.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_ERROR_newgroup.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_ERROR_newgroup.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_bazqux.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_bazqux.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_bazqux.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_foobar.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_foobar.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_foobar.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_52_foobar.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_52_foobar.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_52_foobar.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.stdout
+- spec/provider/group/darwin_directory_service_spec.rb
+- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.stdout
+- spec/provider/group/gnu_passwd/groupadd_--system_newgroup.return
+- spec/provider/group/gnu_passwd/groupadd_--system_newgroup.stderr
+- spec/provider/group/gnu_passwd/groupadd_--system_newgroup.stdout
+- spec/provider/group/gnu_passwd/groupadd_-g_1234_newgroup.return
+- spec/provider/group/gnu_passwd/groupadd_-g_1234_newgroup.stderr
+- spec/provider/group/gnu_passwd/groupadd_-g_1234_newgroup.stdout
+- spec/provider/group/gnu_passwd/groupadd_-g_ERROR_newgroup.return
+- spec/provider/group/gnu_passwd/groupadd_-g_ERROR_newgroup.stderr
+- spec/provider/group/gnu_passwd/groupadd_-g_ERROR_newgroup.stdout
+- spec/provider/group/gnu_passwd/groupdel_bazqux.return
+- spec/provider/group/gnu_passwd/groupdel_bazqux.stderr
+- spec/provider/group/gnu_passwd/groupdel_bazqux.stdout
+- spec/provider/group/gnu_passwd/groupdel_foobar.return
+- spec/provider/group/gnu_passwd/groupdel_foobar.stderr
+- spec/provider/group/gnu_passwd/groupdel_foobar.stdout
+- spec/provider/group/gnu_passwd/groupmod_-g_52_foobar.return
+- spec/provider/group/gnu_passwd/groupmod_-g_52_foobar.stderr
+- spec/provider/group/gnu_passwd/groupmod_-g_52_foobar.stdout
+- spec/provider/group/gnu_passwd/groupmod_-g_ERROR_foobar.return
+- spec/provider/group/gnu_passwd/groupmod_-g_ERROR_foobar.stderr
+- spec/provider/group/gnu_passwd/groupmod_-g_ERROR_foobar.stdout
+- spec/provider/group/gnu_passwd_spec.rb
+- spec/provider/group_spec.rb
+- spec/provider/package/apt/apt-cache_policy_abcde.return
+- spec/provider/package/apt/apt-cache_policy_abcde.stderr
+- spec/provider/package/apt/apt-cache_policy_abcde.stdout
+- spec/provider/package/apt/apt-cache_policy_htop.return
+- spec/provider/package/apt/apt-cache_policy_htop.stderr
+- spec/provider/package/apt/apt-cache_policy_htop.stdout
+- spec/provider/package/apt/apt-cache_policy_not-a-real-package.return
+- spec/provider/package/apt/apt-cache_policy_not-a-real-package.stderr
+- spec/provider/package/apt/apt-cache_policy_not-a-real-package.stdout
+- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.return
+- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stderr
+- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stdout
+- spec/provider/package/apt/apt-get_install_-qy_htop.return
+- spec/provider/package/apt/apt-get_install_-qy_htop.stderr
+- spec/provider/package/apt/apt-get_install_-qy_htop.stdout
+- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.return
+- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.stderr
+- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.stdout
+- spec/provider/package/apt/apt-get_remove_-qy_abcde.return
+- spec/provider/package/apt/apt-get_remove_-qy_abcde.stderr
+- spec/provider/package/apt/apt-get_remove_-qy_abcde.stdout
+- spec/provider/package/apt_spec.rb
+- spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.return
+- spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.stderr
+- spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.stdout
+- spec/provider/package/homebrew/brew_info_--json=v1_lame.return
+- spec/provider/package/homebrew/brew_info_--json=v1_lame.stderr
+- spec/provider/package/homebrew/brew_info_--json=v1_lame.stdout
+- spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.return
+- spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.stderr
+- spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.stdout
+- spec/provider/package/homebrew/brew_install_cd-discid.return
+- spec/provider/package/homebrew/brew_install_cd-discid.stderr
+- spec/provider/package/homebrew/brew_install_cd-discid.stdout
+- spec/provider/package/homebrew/brew_install_not-a-real-package.return
+- spec/provider/package/homebrew/brew_install_not-a-real-package.stderr
+- spec/provider/package/homebrew/brew_install_not-a-real-package.stdout
+- spec/provider/package/homebrew/brew_uninstall_lame.return
+- spec/provider/package/homebrew/brew_uninstall_lame.stderr
+- spec/provider/package/homebrew/brew_uninstall_lame.stdout
+- spec/provider/package/homebrew_spec.rb
+- spec/provider/package_spec.rb
+- spec/provider/symlink_spec.rb
+- spec/provider/user/darwin_directory_service/dscl-delete-user.return
+- spec/provider/user/darwin_directory_service/dscl-delete-user.stderr
+- spec/provider/user/darwin_directory_service/dscl-delete-user.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-full-name.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-full-name.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-full-name.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-home.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-home.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-home.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-password.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-password.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-password.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-primary-group.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-primary-group.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-primary-group.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-shell.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-shell.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-shell.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-uid.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-uid.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-uid.stdout
+- spec/provider/user/darwin_directory_service_spec.rb
+- spec/provider/user/gnu_passwd/useradd_johndoe.return
+- spec/provider/user/gnu_passwd/useradd_johndoe.stderr
+- spec/provider/user/gnu_passwd/useradd_johndoe.stdout
+- spec/provider/user/gnu_passwd/useradd_with_options.return
+- spec/provider/user/gnu_passwd/useradd_with_options.stderr
+- spec/provider/user/gnu_passwd/useradd_with_options.stdout
+- spec/provider/user/gnu_passwd/userdel_johndoe.return
+- spec/provider/user/gnu_passwd/userdel_johndoe.stderr
+- spec/provider/user/gnu_passwd/userdel_johndoe.stdout
+- spec/provider/user/gnu_passwd/usermod_-u_42_johndoe.return
+- spec/provider/user/gnu_passwd/usermod_-u_42_johndoe.stderr
+- spec/provider/user/gnu_passwd/usermod_-u_42_johndoe.stdout
+- spec/provider/user/gnu_passwd_spec.rb
+- spec/provider/user_spec.rb
+- spec/provider_spec.rb
+- spec/recursive_autoloader/foo/bar/baz.rb
+- spec/recursive_autoloader/identically_named_dir_and_file/this_should_not_be_loaded.rb
+- spec/recursive_autoloader/identically_named_dir_and_file.rb
+- spec/recursive_autoloader/loaded_on_demand.rb
+- spec/recursive_autoloader/raises_exception.rb
+- spec/recursive_autoloader_spec.rb
+- spec/resource/directory_spec.rb
+- spec/resource/file_spec.rb
+- spec/resource/group_spec.rb
+- spec/resource/package_spec.rb
+- spec/resource/symlink_spec.rb
+- spec/resource/user_spec.rb
+- spec/resource_spec.rb
+- spec/spec_helper.rb
+- spec/spec_helpers/fake_capture3.rb
+- spec/spec_helpers/test_coverage.rb
+- spec/util/activesupport_spec.rb
+- spec/util/file_owner_spec.rb
+- spec/util/file_permissions_spec.rb
+- spec/util/file_spec.rb
+- spec/util/user_spec.rb
+- spec/util_spec.rb
+homepage: https://github.com/sometimesfood/wright
+licenses:
+- MIT
+metadata: {}
+post_install_message: 
+rdoc_options: []
+require_paths:
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement
+  requirements:
+  - - '>='
+    - !ruby/object:Gem::Version
+      version: 1.9.3
+required_rubygems_version: !ruby/object:Gem::Requirement
+  requirements:
+  - - '>='
+    - !ruby/object:Gem::Version
+      version: '0'
+requirements: []
+rubyforge_project: 
+rubygems_version: 2.0.14
+signing_key: 
+specification_version: 4
+summary: A lightweight config management library
+test_files:
+- spec/cli/shebang.rb
+- spec/cli_spec.rb
+- spec/config_spec.rb
+- spec/dsl_spec.rb
+- spec/logger_spec.rb
+- spec/provider/directory_spec.rb
+- spec/provider/file_spec.rb
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership.return
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership.stderr
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership.stdout
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_permission-denied-user.return
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_permission-denied-user.stderr
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_permission-denied-user.stdout
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_user1_user2.return
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_user1_user2.stderr
+- spec/provider/group/darwin_directory_service/dscl_._create_SLASHGroupsSLASHfoobar_GroupMembership_user1_user2.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_1234_newgroup.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_1234_newgroup.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_1234_newgroup.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_2_newgroup.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_2_newgroup.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_2_newgroup.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_ERROR_newgroup.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_ERROR_newgroup.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_create_-i_ERROR_newgroup.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_bazqux.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_bazqux.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_bazqux.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_foobar.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_foobar.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_delete_foobar.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_52_foobar.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_52_foobar.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_52_foobar.stdout
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.return
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.stderr
+- spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.stdout
+- spec/provider/group/darwin_directory_service_spec.rb
+- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.stdout
+- spec/provider/group/gnu_passwd/groupadd_--system_newgroup.return
+- spec/provider/group/gnu_passwd/groupadd_--system_newgroup.stderr
+- spec/provider/group/gnu_passwd/groupadd_--system_newgroup.stdout
+- spec/provider/group/gnu_passwd/groupadd_-g_1234_newgroup.return
+- spec/provider/group/gnu_passwd/groupadd_-g_1234_newgroup.stderr
+- spec/provider/group/gnu_passwd/groupadd_-g_1234_newgroup.stdout
+- spec/provider/group/gnu_passwd/groupadd_-g_ERROR_newgroup.return
+- spec/provider/group/gnu_passwd/groupadd_-g_ERROR_newgroup.stderr
+- spec/provider/group/gnu_passwd/groupadd_-g_ERROR_newgroup.stdout
+- spec/provider/group/gnu_passwd/groupdel_bazqux.return
+- spec/provider/group/gnu_passwd/groupdel_bazqux.stderr
+- spec/provider/group/gnu_passwd/groupdel_bazqux.stdout
+- spec/provider/group/gnu_passwd/groupdel_foobar.return
+- spec/provider/group/gnu_passwd/groupdel_foobar.stderr
+- spec/provider/group/gnu_passwd/groupdel_foobar.stdout
+- spec/provider/group/gnu_passwd/groupmod_-g_52_foobar.return
+- spec/provider/group/gnu_passwd/groupmod_-g_52_foobar.stderr
+- spec/provider/group/gnu_passwd/groupmod_-g_52_foobar.stdout
+- spec/provider/group/gnu_passwd/groupmod_-g_ERROR_foobar.return
+- spec/provider/group/gnu_passwd/groupmod_-g_ERROR_foobar.stderr
+- spec/provider/group/gnu_passwd/groupmod_-g_ERROR_foobar.stdout
+- spec/provider/group/gnu_passwd_spec.rb
+- spec/provider/group_spec.rb
+- spec/provider/package/apt/apt-cache_policy_abcde.return
+- spec/provider/package/apt/apt-cache_policy_abcde.stderr
+- spec/provider/package/apt/apt-cache_policy_abcde.stdout
+- spec/provider/package/apt/apt-cache_policy_htop.return
+- spec/provider/package/apt/apt-cache_policy_htop.stderr
+- spec/provider/package/apt/apt-cache_policy_htop.stdout
+- spec/provider/package/apt/apt-cache_policy_not-a-real-package.return
+- spec/provider/package/apt/apt-cache_policy_not-a-real-package.stderr
+- spec/provider/package/apt/apt-cache_policy_not-a-real-package.stdout
+- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.return
+- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stderr
+- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stdout
+- spec/provider/package/apt/apt-get_install_-qy_htop.return
+- spec/provider/package/apt/apt-get_install_-qy_htop.stderr
+- spec/provider/package/apt/apt-get_install_-qy_htop.stdout
+- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.return
+- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.stderr
+- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.stdout
+- spec/provider/package/apt/apt-get_remove_-qy_abcde.return
+- spec/provider/package/apt/apt-get_remove_-qy_abcde.stderr
+- spec/provider/package/apt/apt-get_remove_-qy_abcde.stdout
+- spec/provider/package/apt_spec.rb
+- spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.return
+- spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.stderr
+- spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.stdout
+- spec/provider/package/homebrew/brew_info_--json=v1_lame.return
+- spec/provider/package/homebrew/brew_info_--json=v1_lame.stderr
+- spec/provider/package/homebrew/brew_info_--json=v1_lame.stdout
+- spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.return
+- spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.stderr
+- spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.stdout
+- spec/provider/package/homebrew/brew_install_cd-discid.return
+- spec/provider/package/homebrew/brew_install_cd-discid.stderr
+- spec/provider/package/homebrew/brew_install_cd-discid.stdout
+- spec/provider/package/homebrew/brew_install_not-a-real-package.return
+- spec/provider/package/homebrew/brew_install_not-a-real-package.stderr
+- spec/provider/package/homebrew/brew_install_not-a-real-package.stdout
+- spec/provider/package/homebrew/brew_uninstall_lame.return
+- spec/provider/package/homebrew/brew_uninstall_lame.stderr
+- spec/provider/package/homebrew/brew_uninstall_lame.stdout
+- spec/provider/package/homebrew_spec.rb
+- spec/provider/package_spec.rb
+- spec/provider/symlink_spec.rb
+- spec/provider/user/darwin_directory_service/dscl-delete-user.return
+- spec/provider/user/darwin_directory_service/dscl-delete-user.stderr
+- spec/provider/user/darwin_directory_service/dscl-delete-user.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-full-name.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-full-name.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-full-name.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-home.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-home.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-home.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-password.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-password.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-password.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-primary-group.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-primary-group.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-primary-group.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-shell.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-shell.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-shell.stdout
+- spec/provider/user/darwin_directory_service/dscl-new-user-uid.return
+- spec/provider/user/darwin_directory_service/dscl-new-user-uid.stderr
+- spec/provider/user/darwin_directory_service/dscl-new-user-uid.stdout
+- spec/provider/user/darwin_directory_service_spec.rb
+- spec/provider/user/gnu_passwd/useradd_johndoe.return
+- spec/provider/user/gnu_passwd/useradd_johndoe.stderr
+- spec/provider/user/gnu_passwd/useradd_johndoe.stdout
+- spec/provider/user/gnu_passwd/useradd_with_options.return
+- spec/provider/user/gnu_passwd/useradd_with_options.stderr
+- spec/provider/user/gnu_passwd/useradd_with_options.stdout
+- spec/provider/user/gnu_passwd/userdel_johndoe.return
+- spec/provider/user/gnu_passwd/userdel_johndoe.stderr
+- spec/provider/user/gnu_passwd/userdel_johndoe.stdout
+- spec/provider/user/gnu_passwd/usermod_-u_42_johndoe.return
+- spec/provider/user/gnu_passwd/usermod_-u_42_johndoe.stderr
+- spec/provider/user/gnu_passwd/usermod_-u_42_johndoe.stdout
+- spec/provider/user/gnu_passwd_spec.rb
+- spec/provider/user_spec.rb
+- spec/provider_spec.rb
+- spec/recursive_autoloader/foo/bar/baz.rb
+- spec/recursive_autoloader/identically_named_dir_and_file/this_should_not_be_loaded.rb
+- spec/recursive_autoloader/identically_named_dir_and_file.rb
+- spec/recursive_autoloader/loaded_on_demand.rb
+- spec/recursive_autoloader/raises_exception.rb
+- spec/recursive_autoloader_spec.rb
+- spec/resource/directory_spec.rb
+- spec/resource/file_spec.rb
+- spec/resource/group_spec.rb
+- spec/resource/package_spec.rb
+- spec/resource/symlink_spec.rb
+- spec/resource/user_spec.rb
+- spec/resource_spec.rb
+- spec/spec_helper.rb
+- spec/spec_helpers/fake_capture3.rb
+- spec/spec_helpers/test_coverage.rb
+- spec/util/activesupport_spec.rb
+- spec/util/file_owner_spec.rb
+- spec/util/file_permissions_spec.rb
+- spec/util/file_spec.rb
+- spec/util/user_spec.rb
+- spec/util_spec.rb
+has_rdoc: 
