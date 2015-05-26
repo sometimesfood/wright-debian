@@ -1,139 +1,139 @@
 --- !ruby/object:Gem::Specification
 name: wright
 version: !ruby/object:Gem::Version
-  version: 0.3.0
+  version: 0.3.1
 platform: ruby
 authors:
 - Sebastian Boehm
 autorequire: 
 bindir: bin
 cert_chain: []
-date: 2015-04-23 00:00:00.000000000 Z
+date: 2015-05-26 00:00:00.000000000 Z
 dependencies:
 - !ruby/object:Gem::Dependency
   name: minitest
   requirement: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 5.6.0
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 5.6.0
 - !ruby/object:Gem::Dependency
   name: minitest-stub-const
   requirement: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: '0.4'
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: '0.4'
 - !ruby/object:Gem::Dependency
   name: fakefs
   requirement: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.6.7
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.6.7
 - !ruby/object:Gem::Dependency
   name: fakeetc
   requirement: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.2.0
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.2.0
 - !ruby/object:Gem::Dependency
   name: rake
   requirement: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 10.4.2
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 10.4.2
 - !ruby/object:Gem::Dependency
   name: yard
   requirement: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.8.7.6
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.8.7.6
 - !ruby/object:Gem::Dependency
   name: simplecov
   requirement: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.10.0
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.10.0
 - !ruby/object:Gem::Dependency
   name: pry
   requirement: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.10.1
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.10.1
 - !ruby/object:Gem::Dependency
   name: rubocop
   requirement: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.30.1
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
-    - - ~>
+    - - "~>"
       - !ruby/object:Gem::Version
         version: 0.30.1
 description: |
@@ -145,38 +145,39 @@ executables:
 extensions: []
 extra_rdoc_files: []
 files:
-- Rakefile
-- README.md
 - CONTRIBUTING.md
 - LICENSE
 - NEWS.md
-- man/wright.1
+- README.md
+- Rakefile
 - bin/wright
+- lib/wright.rb
 - lib/wright/cli.rb
 - lib/wright/config.rb
 - lib/wright/dry_run.rb
 - lib/wright/dsl.rb
 - lib/wright/logger.rb
+- lib/wright/provider.rb
 - lib/wright/provider/directory.rb
 - lib/wright/provider/file.rb
+- lib/wright/provider/group.rb
 - lib/wright/provider/group/darwin_directory_service.rb
 - lib/wright/provider/group/gnu_passwd.rb
-- lib/wright/provider/group.rb
+- lib/wright/provider/package.rb
 - lib/wright/provider/package/apt.rb
 - lib/wright/provider/package/homebrew.rb
-- lib/wright/provider/package.rb
 - lib/wright/provider/symlink.rb
+- lib/wright/provider/user.rb
 - lib/wright/provider/user/darwin_directory_service.rb
 - lib/wright/provider/user/gnu_passwd.rb
-- lib/wright/provider/user.rb
-- lib/wright/provider.rb
+- lib/wright/resource.rb
 - lib/wright/resource/directory.rb
 - lib/wright/resource/file.rb
 - lib/wright/resource/group.rb
 - lib/wright/resource/package.rb
 - lib/wright/resource/symlink.rb
 - lib/wright/resource/user.rb
-- lib/wright/resource.rb
+- lib/wright/util.rb
 - lib/wright/util/color.rb
 - lib/wright/util/file.rb
 - lib/wright/util/file_owner.rb
@@ -184,9 +185,8 @@ files:
 - lib/wright/util/recursive_autoloader.rb
 - lib/wright/util/stolen_from_activesupport.rb
 - lib/wright/util/user.rb
-- lib/wright/util.rb
 - lib/wright/version.rb
-- lib/wright.rb
+- man/wright.1
 - spec/cli/shebang.rb
 - spec/cli_spec.rb
 - spec/config_spec.rb
@@ -225,15 +225,15 @@ files:
 - spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.stderr
 - spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.stdout
 - spec/provider/group/darwin_directory_service_spec.rb
-- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.return
-- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.stderr
-- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.stdout
-- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.return
-- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.stderr
-- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.stdout
-- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.return
-- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.stderr
-- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M__foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M__foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M__foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M_not-a-user_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_not-a-user_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_not-a-user_foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M_user1,user2_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_user1,user2_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_user1,user2_foobar.stdout
 - spec/provider/group/gnu_passwd/groupadd_--system_newgroup.return
 - spec/provider/group/gnu_passwd/groupadd_--system_newgroup.stderr
 - spec/provider/group/gnu_passwd/groupadd_--system_newgroup.stdout
@@ -338,8 +338,8 @@ files:
 - spec/provider/user_spec.rb
 - spec/provider_spec.rb
 - spec/recursive_autoloader/foo/bar/baz.rb
-- spec/recursive_autoloader/identically_named_dir_and_file/this_should_not_be_loaded.rb
 - spec/recursive_autoloader/identically_named_dir_and_file.rb
+- spec/recursive_autoloader/identically_named_dir_and_file/this_should_not_be_loaded.rb
 - spec/recursive_autoloader/loaded_on_demand.rb
 - spec/recursive_autoloader/raises_exception.rb
 - spec/recursive_autoloader_spec.rb
@@ -369,17 +369,17 @@ require_paths:
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement
   requirements:
-  - - '>='
+  - - ">="
     - !ruby/object:Gem::Version
       version: 1.9.3
 required_rubygems_version: !ruby/object:Gem::Requirement
   requirements:
-  - - '>='
+  - - ">="
     - !ruby/object:Gem::Version
       version: '0'
 requirements: []
 rubyforge_project: 
-rubygems_version: 2.0.14
+rubygems_version: 2.2.2
 signing_key: 
 specification_version: 4
 summary: A lightweight config management library
@@ -422,15 +422,15 @@ test_files:
 - spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.stderr
 - spec/provider/group/darwin_directory_service/dseditgroup_-o_edit_-i_ERROR_foobar.stdout
 - spec/provider/group/darwin_directory_service_spec.rb
-- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.return
-- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.stderr
-- spec/provider/group/gnu_passwd/gpasswd_-M_''_foobar.stdout
-- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.return
-- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.stderr
-- spec/provider/group/gnu_passwd/gpasswd_-M_'not-a-user'_foobar.stdout
-- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.return
-- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.stderr
-- spec/provider/group/gnu_passwd/gpasswd_-M_'user1,user2'_foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M__foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M__foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M__foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M_not-a-user_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_not-a-user_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_not-a-user_foobar.stdout
+- spec/provider/group/gnu_passwd/gpasswd_-M_user1,user2_foobar.return
+- spec/provider/group/gnu_passwd/gpasswd_-M_user1,user2_foobar.stderr
+- spec/provider/group/gnu_passwd/gpasswd_-M_user1,user2_foobar.stdout
 - spec/provider/group/gnu_passwd/groupadd_--system_newgroup.return
 - spec/provider/group/gnu_passwd/groupadd_--system_newgroup.stderr
 - spec/provider/group/gnu_passwd/groupadd_--system_newgroup.stdout
@@ -535,8 +535,8 @@ test_files:
 - spec/provider/user_spec.rb
 - spec/provider_spec.rb
 - spec/recursive_autoloader/foo/bar/baz.rb
-- spec/recursive_autoloader/identically_named_dir_and_file/this_should_not_be_loaded.rb
 - spec/recursive_autoloader/identically_named_dir_and_file.rb
+- spec/recursive_autoloader/identically_named_dir_and_file/this_should_not_be_loaded.rb
 - spec/recursive_autoloader/loaded_on_demand.rb
 - spec/recursive_autoloader/raises_exception.rb
 - spec/recursive_autoloader_spec.rb
