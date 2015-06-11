@@ -1,14 +1,14 @@
 --- !ruby/object:Gem::Specification
 name: wright
 version: !ruby/object:Gem::Version
-  version: 0.3.2
+  version: 0.4.0
 platform: ruby
 authors:
 - Sebastian Boehm
 autorequire: 
 bindir: bin
 cert_chain: []
-date: 2015-06-01 00:00:00.000000000 Z
+date: 2015-06-11 00:00:00.000000000 Z
 dependencies:
 - !ruby/object:Gem::Dependency
   name: minitest
@@ -16,14 +16,14 @@ dependencies:
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 5.6.0
+        version: 5.7.0
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 5.6.0
+        version: 5.7.0
 - !ruby/object:Gem::Dependency
   name: minitest-stub-const
   requirement: !ruby/object:Gem::Requirement
@@ -58,14 +58,14 @@ dependencies:
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 0.2.0
+        version: 0.3.0
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 0.2.0
+        version: 0.3.0
 - !ruby/object:Gem::Dependency
   name: rake
   requirement: !ruby/object:Gem::Requirement
@@ -94,6 +94,20 @@ dependencies:
     - - ~>
       - !ruby/object:Gem::Version
         version: 0.8.7.6
+- !ruby/object:Gem::Dependency
+  name: redcarpet
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 3.2.3
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 3.2.3
 - !ruby/object:Gem::Dependency
   name: simplecov
   requirement: !ruby/object:Gem::Requirement
@@ -128,16 +142,16 @@ dependencies:
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 0.30.1
+        version: 0.32.0
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 0.30.1
+        version: 0.32.0
 description: |
-  Wright is a lightweight configuration management library.
+  Wright is a lightweight configuration management tool.
 email:
 - sebastian@sometimesfood.org
 executables:
@@ -145,12 +159,6 @@ executables:
 extensions: []
 extra_rdoc_files: []
 files:
-- Rakefile
-- README.md
-- CONTRIBUTING.md
-- LICENSE
-- NEWS.md
-- man/wright.1
 - bin/wright
 - lib/wright/cli.rb
 - lib/wright/config.rb
@@ -164,6 +172,7 @@ files:
 - lib/wright/provider/group.rb
 - lib/wright/provider/package/apt.rb
 - lib/wright/provider/package/homebrew.rb
+- lib/wright/provider/package/yum.rb
 - lib/wright/provider/package.rb
 - lib/wright/provider/symlink.rb
 - lib/wright/provider/user/darwin_directory_service.rb
@@ -260,12 +269,42 @@ files:
 - spec/provider/package/apt/apt-cache_policy_abcde.return
 - spec/provider/package/apt/apt-cache_policy_abcde.stderr
 - spec/provider/package/apt/apt-cache_policy_abcde.stdout
+- spec/provider/package/apt/apt-cache_policy_dmenu.return
+- spec/provider/package/apt/apt-cache_policy_dmenu.stderr
+- spec/provider/package/apt/apt-cache_policy_dmenu.stdout
 - spec/provider/package/apt/apt-cache_policy_htop.return
 - spec/provider/package/apt/apt-cache_policy_htop.stderr
 - spec/provider/package/apt/apt-cache_policy_htop.stdout
+- spec/provider/package/apt/apt-cache_policy_linux-image-3.2.0-4-amd64.return
+- spec/provider/package/apt/apt-cache_policy_linux-image-3.2.0-4-amd64.stderr
+- spec/provider/package/apt/apt-cache_policy_linux-image-3.2.0-4-amd64.stdout
+- spec/provider/package/apt/apt-cache_policy_linux-image.return
+- spec/provider/package/apt/apt-cache_policy_linux-image.stderr
+- spec/provider/package/apt/apt-cache_policy_linux-image.stdout
 - spec/provider/package/apt/apt-cache_policy_not-a-real-package.return
 - spec/provider/package/apt/apt-cache_policy_not-a-real-package.stderr
 - spec/provider/package/apt/apt-cache_policy_not-a-real-package.stdout
+- spec/provider/package/apt/apt-cache_policy_suckless-tools.return
+- spec/provider/package/apt/apt-cache_policy_suckless-tools.stderr
+- spec/provider/package/apt/apt-cache_policy_suckless-tools.stdout
+- spec/provider/package/apt/apt-cache_showpkg_dmenu.return
+- spec/provider/package/apt/apt-cache_showpkg_dmenu.stderr
+- spec/provider/package/apt/apt-cache_showpkg_dmenu.stdout
+- spec/provider/package/apt/apt-cache_showpkg_htop.return
+- spec/provider/package/apt/apt-cache_showpkg_htop.stderr
+- spec/provider/package/apt/apt-cache_showpkg_htop.stdout
+- spec/provider/package/apt/apt-cache_showpkg_linux-image.return
+- spec/provider/package/apt/apt-cache_showpkg_linux-image.stderr
+- spec/provider/package/apt/apt-cache_showpkg_linux-image.stdout
+- spec/provider/package/apt/apt-cache_showpkg_not-a-real-package.return
+- spec/provider/package/apt/apt-cache_showpkg_not-a-real-package.stderr
+- spec/provider/package/apt/apt-cache_showpkg_not-a-real-package.stdout
+- spec/provider/package/apt/apt-cache_showpkg_suckless-tools.return
+- spec/provider/package/apt/apt-cache_showpkg_suckless-tools.stderr
+- spec/provider/package/apt/apt-cache_showpkg_suckless-tools.stdout
+- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.return
+- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.stderr
+- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.stdout
 - spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.return
 - spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stderr
 - spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stdout
@@ -288,16 +327,47 @@ files:
 - spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.return
 - spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.stderr
 - spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.stdout
+- spec/provider/package/homebrew/brew_install_--with-default-names_gnu-units.return
+- spec/provider/package/homebrew/brew_install_--with-default-names_gnu-units.stderr
+- spec/provider/package/homebrew/brew_install_--with-default-names_gnu-units.stdout
 - spec/provider/package/homebrew/brew_install_cd-discid.return
 - spec/provider/package/homebrew/brew_install_cd-discid.stderr
 - spec/provider/package/homebrew/brew_install_cd-discid.stdout
 - spec/provider/package/homebrew/brew_install_not-a-real-package.return
 - spec/provider/package/homebrew/brew_install_not-a-real-package.stderr
 - spec/provider/package/homebrew/brew_install_not-a-real-package.stdout
+- spec/provider/package/homebrew/brew_uninstall_--force_lame.return
+- spec/provider/package/homebrew/brew_uninstall_--force_lame.stderr
+- spec/provider/package/homebrew/brew_uninstall_--force_lame.stdout
 - spec/provider/package/homebrew/brew_uninstall_lame.return
 - spec/provider/package/homebrew/brew_uninstall_lame.stderr
 - spec/provider/package/homebrew/brew_uninstall_lame.stdout
 - spec/provider/package/homebrew_spec.rb
+- spec/provider/package/yum/rpm_-q_httpd.return
+- spec/provider/package/yum/rpm_-q_httpd.stderr
+- spec/provider/package/yum/rpm_-q_httpd.stdout
+- spec/provider/package/yum/rpm_-q_zsh.return
+- spec/provider/package/yum/rpm_-q_zsh.stderr
+- spec/provider/package/yum/rpm_-q_zsh.stdout
+- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.return
+- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.stderr
+- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.stdout
+- spec/provider/package/yum/yum_install_-y_nano.return
+- spec/provider/package/yum/yum_install_-y_nano.stderr
+- spec/provider/package/yum/yum_install_-y_nano.stdout
+- spec/provider/package/yum/yum_install_-y_not-a-real-package.return
+- spec/provider/package/yum/yum_install_-y_not-a-real-package.stderr
+- spec/provider/package/yum/yum_install_-y_not-a-real-package.stdout
+- spec/provider/package/yum/yum_install_with_options.return
+- spec/provider/package/yum/yum_install_with_options.stderr
+- spec/provider/package/yum/yum_install_with_options.stdout
+- spec/provider/package/yum/yum_remove_-y_screen.return
+- spec/provider/package/yum/yum_remove_-y_screen.stderr
+- spec/provider/package/yum/yum_remove_-y_screen.stdout
+- spec/provider/package/yum/yum_remove_with_options.return
+- spec/provider/package/yum/yum_remove_with_options.stderr
+- spec/provider/package/yum/yum_remove_with_options.stdout
+- spec/provider/package/yum_spec.rb
 - spec/provider/package_spec.rb
 - spec/provider/symlink_spec.rb
 - spec/provider/user/darwin_directory_service/dscl-delete-user.return
@@ -359,6 +429,12 @@ files:
 - spec/util/file_spec.rb
 - spec/util/user_spec.rb
 - spec/util_spec.rb
+- man/wright.1
+- Rakefile
+- README.md
+- CONTRIBUTING.md
+- NEWS.md
+- LICENSE
 homepage: https://github.com/sometimesfood/wright
 licenses:
 - MIT
@@ -382,7 +458,7 @@ rubyforge_project:
 rubygems_version: 2.0.14
 signing_key: 
 specification_version: 4
-summary: A lightweight config management library
+summary: A lightweight config management tool
 test_files:
 - spec/cli/shebang.rb
 - spec/cli_spec.rb
@@ -457,12 +533,42 @@ test_files:
 - spec/provider/package/apt/apt-cache_policy_abcde.return
 - spec/provider/package/apt/apt-cache_policy_abcde.stderr
 - spec/provider/package/apt/apt-cache_policy_abcde.stdout
+- spec/provider/package/apt/apt-cache_policy_dmenu.return
+- spec/provider/package/apt/apt-cache_policy_dmenu.stderr
+- spec/provider/package/apt/apt-cache_policy_dmenu.stdout
 - spec/provider/package/apt/apt-cache_policy_htop.return
 - spec/provider/package/apt/apt-cache_policy_htop.stderr
 - spec/provider/package/apt/apt-cache_policy_htop.stdout
+- spec/provider/package/apt/apt-cache_policy_linux-image-3.2.0-4-amd64.return
+- spec/provider/package/apt/apt-cache_policy_linux-image-3.2.0-4-amd64.stderr
+- spec/provider/package/apt/apt-cache_policy_linux-image-3.2.0-4-amd64.stdout
+- spec/provider/package/apt/apt-cache_policy_linux-image.return
+- spec/provider/package/apt/apt-cache_policy_linux-image.stderr
+- spec/provider/package/apt/apt-cache_policy_linux-image.stdout
 - spec/provider/package/apt/apt-cache_policy_not-a-real-package.return
 - spec/provider/package/apt/apt-cache_policy_not-a-real-package.stderr
 - spec/provider/package/apt/apt-cache_policy_not-a-real-package.stdout
+- spec/provider/package/apt/apt-cache_policy_suckless-tools.return
+- spec/provider/package/apt/apt-cache_policy_suckless-tools.stderr
+- spec/provider/package/apt/apt-cache_policy_suckless-tools.stdout
+- spec/provider/package/apt/apt-cache_showpkg_dmenu.return
+- spec/provider/package/apt/apt-cache_showpkg_dmenu.stderr
+- spec/provider/package/apt/apt-cache_showpkg_dmenu.stdout
+- spec/provider/package/apt/apt-cache_showpkg_htop.return
+- spec/provider/package/apt/apt-cache_showpkg_htop.stderr
+- spec/provider/package/apt/apt-cache_showpkg_htop.stdout
+- spec/provider/package/apt/apt-cache_showpkg_linux-image.return
+- spec/provider/package/apt/apt-cache_showpkg_linux-image.stderr
+- spec/provider/package/apt/apt-cache_showpkg_linux-image.stdout
+- spec/provider/package/apt/apt-cache_showpkg_not-a-real-package.return
+- spec/provider/package/apt/apt-cache_showpkg_not-a-real-package.stderr
+- spec/provider/package/apt/apt-cache_showpkg_not-a-real-package.stdout
+- spec/provider/package/apt/apt-cache_showpkg_suckless-tools.return
+- spec/provider/package/apt/apt-cache_showpkg_suckless-tools.stderr
+- spec/provider/package/apt/apt-cache_showpkg_suckless-tools.stdout
+- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.return
+- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.stderr
+- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.stdout
 - spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.return
 - spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stderr
 - spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stdout
@@ -485,16 +591,47 @@ test_files:
 - spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.return
 - spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.stderr
 - spec/provider/package/homebrew/brew_info_--json=v1_not-a-real-package.stdout
+- spec/provider/package/homebrew/brew_install_--with-default-names_gnu-units.return
+- spec/provider/package/homebrew/brew_install_--with-default-names_gnu-units.stderr
+- spec/provider/package/homebrew/brew_install_--with-default-names_gnu-units.stdout
 - spec/provider/package/homebrew/brew_install_cd-discid.return
 - spec/provider/package/homebrew/brew_install_cd-discid.stderr
 - spec/provider/package/homebrew/brew_install_cd-discid.stdout
 - spec/provider/package/homebrew/brew_install_not-a-real-package.return
 - spec/provider/package/homebrew/brew_install_not-a-real-package.stderr
 - spec/provider/package/homebrew/brew_install_not-a-real-package.stdout
+- spec/provider/package/homebrew/brew_uninstall_--force_lame.return
+- spec/provider/package/homebrew/brew_uninstall_--force_lame.stderr
+- spec/provider/package/homebrew/brew_uninstall_--force_lame.stdout
 - spec/provider/package/homebrew/brew_uninstall_lame.return
 - spec/provider/package/homebrew/brew_uninstall_lame.stderr
 - spec/provider/package/homebrew/brew_uninstall_lame.stdout
 - spec/provider/package/homebrew_spec.rb
+- spec/provider/package/yum/rpm_-q_httpd.return
+- spec/provider/package/yum/rpm_-q_httpd.stderr
+- spec/provider/package/yum/rpm_-q_httpd.stdout
+- spec/provider/package/yum/rpm_-q_zsh.return
+- spec/provider/package/yum/rpm_-q_zsh.stderr
+- spec/provider/package/yum/rpm_-q_zsh.stdout
+- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.return
+- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.stderr
+- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.stdout
+- spec/provider/package/yum/yum_install_-y_nano.return
+- spec/provider/package/yum/yum_install_-y_nano.stderr
+- spec/provider/package/yum/yum_install_-y_nano.stdout
+- spec/provider/package/yum/yum_install_-y_not-a-real-package.return
+- spec/provider/package/yum/yum_install_-y_not-a-real-package.stderr
+- spec/provider/package/yum/yum_install_-y_not-a-real-package.stdout
+- spec/provider/package/yum/yum_install_with_options.return
+- spec/provider/package/yum/yum_install_with_options.stderr
+- spec/provider/package/yum/yum_install_with_options.stdout
+- spec/provider/package/yum/yum_remove_-y_screen.return
+- spec/provider/package/yum/yum_remove_-y_screen.stderr
+- spec/provider/package/yum/yum_remove_-y_screen.stdout
+- spec/provider/package/yum/yum_remove_with_options.return
+- spec/provider/package/yum/yum_remove_with_options.stderr
+- spec/provider/package/yum/yum_remove_with_options.stdout
+- spec/provider/package/yum_spec.rb
 - spec/provider/package_spec.rb
 - spec/provider/symlink_spec.rb
 - spec/provider/user/darwin_directory_service/dscl-delete-user.return
