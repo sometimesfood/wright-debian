@@ -1,3 +1,9 @@
+wright (0.4.0-1~ppa1) trusty; urgency=medium
+
+  * Imported Upstream version 0.4.0
+
+ -- Sebastian Boehm <sebastian@sometimesfood.org>  Thu, 11 Jun 2015 14:04:31 +0200
+
 wright (0.3.2-1~ppa1) trusty; urgency=medium
 
   * Imported Upstream version 0.3.2
