@@ -56,7 +56,7 @@ module Wright
     #   # => "debian"
     # @example
     #   Wright::Util.os_family
-    #   # => "macosx"
+    #   # => "osx"
     #
     # @return [String] the system's OS family (base distribution for
     #   GNU/Linux systems) or 'other' for unknown operating systems
@@ -64,7 +64,7 @@ module Wright
       system_arch = RbConfig::CONFIG['target_os']
       case system_arch
       when /darwin/
-        'macosx'
+        'osx'
       when /linux/
         distro
       else
@@ -84,6 +84,18 @@ module Wright
       else
         yield
       end
+    end
+
+    # Fetches the value of the candidate key that occurs last in a hash.
+    #
+    # @param hash [Hash] the hash
+    # @param candidate_keys [Array<Object>] the candidate keys
+    # @param default [Object] the default value
+    # @return [Object] the value of the candidate key that occurs last in
+    #   the hash or +default+ if none of the candidate keys can be found
+    def self.fetch_last(hash, candidate_keys, default = nil)
+      candidates = hash.select { |k, _v| candidate_keys.include?(k) }
+      candidates.empty? ? default : candidates.values.last
     end
   end
 end

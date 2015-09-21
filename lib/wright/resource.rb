@@ -9,13 +9,13 @@ module Wright
     # Initializes a Resource.
     #
     # @param name [String] the name of the resource
-    def initialize(name = nil)
-      @name = name
-      @resource_name = Util.class_to_resource_name(self.class).to_sym
-      @provider = provider_for_resource
-      @action = nil
-      @on_update = nil
-      @ignore_failure = false
+    def initialize(name = nil, args = {})
+      @name           = name
+      @action         = args.fetch(:action, nil)
+      @ignore_failure = args.fetch(:ignore_failure, false)
+      self.on_update  = args.fetch(:on_update, nil)
+      @resource_name  = Util.class_to_resource_name(self.class).to_sym
+      @provider       = provider_for_resource
     end
 
     # @return [Symbol] the name of the method to be run by {#run_action}
@@ -69,10 +69,12 @@ module Wright
     #
     # @return the return value of the current action
     def run_action
-      send @action if @action
+      send action if action
     end
 
     private
+
+    attr_reader :on_update, :provider
 
     # @api public
     # Marks a code block that might update a resource.
@@ -92,7 +94,7 @@ module Wright
     #
     #   class Balloon < Wright::Resource
     #     def inflate
-    #       might_update_resource { @provider.inflate }
+    #       might_update_resource { provider.inflate }
     #     end
     #   end
     #   Wright::Config[:resources] = { balloon: { provider: 'BalloonAnimal' } }
@@ -107,39 +109,39 @@ module Wright
         yield
       rescue => e
         log_error(e)
-        raise e unless @ignore_failure
+        raise e unless ignore_failure
       end
-      updated = @provider.updated?
+      updated = provider.updated?
       run_update_action if updated
       updated
     end
 
     def log_error(exception)
-      resource = "#{@resource_name}"
-      resource << " '#{@name}'" if @name
+      resource = "#{resource_name}"
+      resource << " '#{name}'" if name
       Wright.log.error "#{resource}: #{exception}"
     end
 
     def run_update_action
-      return if @on_update.nil?
+      return unless on_update
 
-      resource = "#{@resource_name} '#{@name}'"
+      resource = "#{resource_name} '#{name}'"
       notification = "run update action for #{resource}"
       if Wright.dry_run?
         Wright.log.info "(would) #{notification}"
       else
         Wright.log.info notification
-        @on_update.call
+        on_update.call
       end
     end
 
     def resource_class
-      Util::ActiveSupport.camelize(@resource_name)
+      Util::ActiveSupport.camelize(resource_name)
     end
 
     def provider_name
-      if Wright::Config.nested_key?(:resources, @resource_name, :provider)
-        Wright::Config[:resources][@resource_name][:provider]
+      if Wright::Config.nested_key?(:resources, resource_name, :provider)
+        Wright::Config[:resources][resource_name][:provider]
       else
         "Wright::Provider::#{resource_class}"
       end

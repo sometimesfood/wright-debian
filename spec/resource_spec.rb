@@ -4,13 +4,6 @@ require 'wright/resource'
 require 'wright/provider'
 
 module Wright
-  # add provider attribute reader for tests
-  class Resource
-    attr_reader :provider
-  end
-end
-
-module Wright
   class Provider
     class Sample < Wright::Provider; end
     class AlternateSample < Wright::Provider; end
@@ -56,20 +49,23 @@ describe Wright::Resource do
 
   it 'should retrieve a provider for a resource' do
     provider_class = Wright::Provider::Sample
-    Sample.new.provider.must_be_kind_of provider_class
+    provider = Sample.new.send(:provider)
+    provider.must_be_kind_of provider_class
   end
 
   it 'should retrieve a provider for a resource listed in the config' do
     # instantiating the Sample resource without any config should
     # yield the Sample provider
     provider_class = Wright::Provider::Sample
-    Sample.new.provider.must_be_kind_of provider_class
+    provider = Sample.new.send(:provider)
+    provider.must_be_kind_of provider_class
 
     # when the provider for Sample resources is set to
     # AlternateSample, AlternateSample should be instantiated
     alternate = Wright::Provider::AlternateSample
     Wright::Config[:resources] = { sample: { provider: alternate.name } }
-    Sample.new.provider.must_be_kind_of alternate
+    alternate_provider = Sample.new.send(:provider)
+    alternate_provider.must_be_kind_of alternate
   end
 
   it 'should display warnings for nonexistent providers' do
@@ -188,5 +184,17 @@ describe Wright::Resource do
       resource.ignore_failure = false
       resource.fail_train
     end.must_raise(RuntimeError)
+  end
+
+  it 'should accept attributes via an argument hash' do
+    sample_lambda = -> {}
+    sample = Sample.new('sample_name',
+                        action: 'sample_action',
+                        on_update: sample_lambda,
+                        ignore_failure: 'sample_ignore_failure')
+    sample.name.must_equal 'sample_name'
+    sample.action.must_equal 'sample_action'
+    sample.send(:on_update).must_equal sample_lambda
+    sample.ignore_failure.must_equal 'sample_ignore_failure'
   end
 end

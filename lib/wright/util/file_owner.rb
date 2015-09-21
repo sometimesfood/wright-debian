@@ -9,9 +9,14 @@ module Wright
       # @return [String, Integer] the group's name or gid
       attr_accessor :group
 
+      def initialize(user_and_group = nil, group = nil)
+        self.user_and_group = user_and_group
+        self.group = group if group
+      end
+
       # Sets user and group simultaneously.
       #
-      # @param [String, Integer] user_and_group a user in +user:group+
+      # @param user_and_group [String, Integer] a user in +user:group+
       #   notation or a uid
       #
       # @example
@@ -38,8 +43,8 @@ module Wright
       #   one colon
       def user_and_group=(user_and_group)
         user, group = split_user_and_group(user_and_group)
-        @user = user
-        @group = group if group
+        self.user = user
+        self.group = group if group
       end
 
       private
