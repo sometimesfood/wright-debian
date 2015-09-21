@@ -6,17 +6,19 @@ module Wright
     # Symlink resource, represents a symlink.
     #
     # @example
-    #   link = Wright::Resource::Symlink.new('/tmp/fstab')
-    #   link.to = '/etc/fstab'
+    #   link = Wright::Resource::Symlink.new('/tmp/fstab', to: '/etc/fstab')
     #   link.create
     class Symlink < Wright::Resource
       # Initializes a Symlink.
       #
       # @param name [String] the symlink's name
-      def initialize(name)
+      # @param args [Hash] the arguments
+      # @option args [Symbol] :action (:create) the action
+      # @option args [String] :to the symlink's target
+      def initialize(name, args = {})
         super
-        @to = nil
-        @action = :create
+        @action = args.fetch(:action, :create)
+        @to     = args.fetch(:to, nil)
       end
 
       # @return [String] the symlink's intended target
@@ -27,9 +29,9 @@ module Wright
       # @return [Bool] true if the symlink was updated and false
       #   otherwise
       def create
-        fail ArgumentError, 'Symlink target undefined' unless @to
+        fail ArgumentError, 'Symlink target undefined' unless to
         might_update_resource do
-          @provider.create
+          provider.create
         end
       end
 
@@ -39,7 +41,7 @@ module Wright
       #   otherwise
       def remove
         might_update_resource do
-          @provider.remove
+          provider.remove
         end
       end
     end

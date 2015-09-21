@@ -6,8 +6,7 @@ module Wright
     # Group resource, represents a group.
     #
     # @example
-    #   admins = Wright::Resource::Group.new('admins')
-    #   admins.members = ['root']
+    #   admins = Wright::Resource::Group.new('admins', members: ['root'])
     #   admins.create
     # @todo Use GnuPasswd provider on all GNU-flavoured systems
     class Group < Wright::Resource
@@ -24,10 +23,18 @@ module Wright
       # Initializes a Group.
       #
       # @param name [String] the group's name
-      def initialize(name)
+      # @param args [Hash] the arguments
+      # @option args [Symbol] :action (:create) the action
+      # @option args [Array<String>] :members the group's members
+      # @option args [Integer] :gid the group's gid
+      # @option args [Bool] :system (false) denotes whether the group
+      #   should be a system group or not
+      def initialize(name, args = {})
         super
-        @action = :create
-        @system = false
+        @action  = args.fetch(:action, :create)
+        @members = args.fetch(:members, nil)
+        @gid     = args.fetch(:gid, nil)
+        @system  = args.fetch(:system, false)
       end
 
       # Creates or updates the group.
@@ -36,7 +43,7 @@ module Wright
       #   otherwise
       def create
         might_update_resource do
-          @provider.create
+          provider.create
         end
       end
 
@@ -46,7 +53,7 @@ module Wright
       #   otherwise
       def remove
         might_update_resource do
-          @provider.remove
+          provider.remove
         end
       end
     end
@@ -57,9 +64,9 @@ Wright::DSL.register_resource(Wright::Resource::Group)
 
 group_providers = {
   'debian' => 'Wright::Provider::Group::GnuPasswd',
-  'rhel'   => 'Wright::Provider::Group::GnuPasswd',
   'fedora' => 'Wright::Provider::Group::GnuPasswd',
-  'macosx' => 'Wright::Provider::Group::DarwinDirectoryService'
+  'rhel'   => 'Wright::Provider::Group::GnuPasswd',
+  'osx'    => 'Wright::Provider::Group::DarwinDirectoryService'
 }
 Wright::Config[:resources][:group] ||= {}
 Wright::Config[:resources][:group][:provider] ||=

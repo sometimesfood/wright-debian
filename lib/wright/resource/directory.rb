@@ -17,11 +17,18 @@ module Wright
       # Initializes a Directory.
       #
       # @param name [String] the directory's name
-      def initialize(name)
+      # @param args [Hash] the arguments
+      # @option args [Symbol] :action (:create) the action
+      # @option args [String, Integer] :mode the directory's mode
+      # @option args [String, Integer] :owner the directory's owner
+      # @option args [String, Integer] :group the directory's group
+      def initialize(name, args = {})
         super
-        @mode = nil
-        @owner = Wright::Util::FileOwner.new
-        @action = :create
+        @action    = args.fetch(:action, :create)
+        @mode      = args.fetch(:mode, nil)
+        owner      = args.fetch(:owner, nil)
+        group      = args.fetch(:group, nil)
+        @dir_owner = Wright::Util::FileOwner.new(owner, group)
       end
 
       # @return [String, Integer] the directory's intended mode
@@ -31,15 +38,15 @@ module Wright
       #   @return [String, Integer] the directory's intended owner
       # @!method owner=
       #   @see #owner
-      def_delegator :@owner, :user_and_group=, :owner=
-      def_delegator :@owner, :user, :owner
+      def_delegator :dir_owner, :user_and_group=, :owner=
+      def_delegator :dir_owner, :user, :owner
 
       # @!attribute group
       #   @return [String, Integer] the directory's intended group
       # @!method group=
       #   @see #group
-      def_delegator :@owner, :group
-      def_delegator :@owner, :group=
+      def_delegator :dir_owner, :group
+      def_delegator :dir_owner, :group=
 
       # Creates or updates the directory.
       #
@@ -47,7 +54,7 @@ module Wright
       #   otherwise
       def create
         might_update_resource do
-          @provider.create
+          provider.create
         end
       end
 
@@ -57,9 +64,13 @@ module Wright
       #   otherwise
       def remove
         might_update_resource do
-          @provider.remove
+          provider.remove
         end
       end
+
+      private
+
+      attr_reader :dir_owner
     end
   end
 end

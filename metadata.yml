@@ -1,43 +1,57 @@
 --- !ruby/object:Gem::Specification
 name: wright
 version: !ruby/object:Gem::Version
-  version: 0.4.4
+  version: 0.5.0
 platform: ruby
 authors:
 - Sebastian Boehm
 autorequire: 
 bindir: bin
 cert_chain: []
-date: 2015-08-06 00:00:00.000000000 Z
+date: 2015-09-21 00:00:00.000000000 Z
 dependencies:
+- !ruby/object:Gem::Dependency
+  name: mustache
+  requirement: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 1.0.2
+  type: :development
+  prerelease: false
+  version_requirements: !ruby/object:Gem::Requirement
+    requirements:
+    - - ~>
+      - !ruby/object:Gem::Version
+        version: 1.0.2
 - !ruby/object:Gem::Dependency
   name: minitest
   requirement: !ruby/object:Gem::Requirement
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 5.7.0
+        version: 5.8.0
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 5.7.0
+        version: 5.8.0
 - !ruby/object:Gem::Dependency
   name: minitest-stub-const
   requirement: !ruby/object:Gem::Requirement
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: '0.4'
+        version: '0.5'
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: '0.4'
+        version: '0.5'
 - !ruby/object:Gem::Dependency
   name: fakefs
   requirement: !ruby/object:Gem::Requirement
@@ -100,14 +114,14 @@ dependencies:
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 3.2.3
+        version: 3.3.2
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 3.2.3
+        version: 3.3.2
 - !ruby/object:Gem::Dependency
   name: simplecov
   requirement: !ruby/object:Gem::Requirement
@@ -142,14 +156,14 @@ dependencies:
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 0.32.0
+        version: 0.34.1
   type: :development
   prerelease: false
   version_requirements: !ruby/object:Gem::Requirement
     requirements:
     - - ~>
       - !ruby/object:Gem::Version
-        version: 0.32.0
+        version: 0.34.1
 description: |
   Wright is a lightweight configuration management tool.
 email:
@@ -187,9 +201,13 @@ files:
 - lib/wright/resource/user.rb
 - lib/wright/resource.rb
 - lib/wright/util/color.rb
+- lib/wright/util/erb_renderer.rb
 - lib/wright/util/file.rb
 - lib/wright/util/file_owner.rb
 - lib/wright/util/file_permissions.rb
+- lib/wright/util/file_renderer.rb
+- lib/wright/util/mustache_renderer.rb
+- lib/wright/util/pencil_mustache.rb
 - lib/wright/util/recursive_autoloader.rb
 - lib/wright/util/stolen_from_activesupport.rb
 - lib/wright/util/user.rb
@@ -302,21 +320,21 @@ files:
 - spec/provider/package/apt/apt-cache_showpkg_suckless-tools.return
 - spec/provider/package/apt/apt-cache_showpkg_suckless-tools.stderr
 - spec/provider/package/apt/apt-cache_showpkg_suckless-tools.stdout
-- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.return
-- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.stderr
-- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.stdout
-- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.return
-- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stderr
-- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stdout
-- spec/provider/package/apt/apt-get_install_-qy_htop.return
-- spec/provider/package/apt/apt-get_install_-qy_htop.stderr
-- spec/provider/package/apt/apt-get_install_-qy_htop.stdout
-- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.return
-- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.stderr
-- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.stdout
-- spec/provider/package/apt/apt-get_remove_-qy_abcde.return
-- spec/provider/package/apt/apt-get_remove_-qy_abcde.stderr
-- spec/provider/package/apt/apt-get_remove_-qy_abcde.stdout
+- spec/provider/package/apt/apt-get_-qy_--purge_remove_abcde.return
+- spec/provider/package/apt/apt-get_-qy_--purge_remove_abcde.stderr
+- spec/provider/package/apt/apt-get_-qy_--purge_remove_abcde.stdout
+- spec/provider/package/apt/apt-get_-qy_install_abcde=2.5.4-1.return
+- spec/provider/package/apt/apt-get_-qy_install_abcde=2.5.4-1.stderr
+- spec/provider/package/apt/apt-get_-qy_install_abcde=2.5.4-1.stdout
+- spec/provider/package/apt/apt-get_-qy_install_htop.return
+- spec/provider/package/apt/apt-get_-qy_install_htop.stderr
+- spec/provider/package/apt/apt-get_-qy_install_htop.stdout
+- spec/provider/package/apt/apt-get_-qy_install_not-a-real-package.return
+- spec/provider/package/apt/apt-get_-qy_install_not-a-real-package.stderr
+- spec/provider/package/apt/apt-get_-qy_install_not-a-real-package.stdout
+- spec/provider/package/apt/apt-get_-qy_remove_abcde.return
+- spec/provider/package/apt/apt-get_-qy_remove_abcde.stderr
+- spec/provider/package/apt/apt-get_-qy_remove_abcde.stdout
 - spec/provider/package/apt_spec.rb
 - spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.return
 - spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.stderr
@@ -349,21 +367,21 @@ files:
 - spec/provider/package/yum/rpm_-q_zsh.return
 - spec/provider/package/yum/rpm_-q_zsh.stderr
 - spec/provider/package/yum/rpm_-q_zsh.stdout
-- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.return
-- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.stderr
-- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.stdout
-- spec/provider/package/yum/yum_install_-y_nano.return
-- spec/provider/package/yum/yum_install_-y_nano.stderr
-- spec/provider/package/yum/yum_install_-y_nano.stdout
-- spec/provider/package/yum/yum_install_-y_not-a-real-package.return
-- spec/provider/package/yum/yum_install_-y_not-a-real-package.stderr
-- spec/provider/package/yum/yum_install_-y_not-a-real-package.stdout
+- spec/provider/package/yum/yum_-y_install_mc-4.8.7-8.el7.return
+- spec/provider/package/yum/yum_-y_install_mc-4.8.7-8.el7.stderr
+- spec/provider/package/yum/yum_-y_install_mc-4.8.7-8.el7.stdout
+- spec/provider/package/yum/yum_-y_install_nano.return
+- spec/provider/package/yum/yum_-y_install_nano.stderr
+- spec/provider/package/yum/yum_-y_install_nano.stdout
+- spec/provider/package/yum/yum_-y_install_not-a-real-package.return
+- spec/provider/package/yum/yum_-y_install_not-a-real-package.stderr
+- spec/provider/package/yum/yum_-y_install_not-a-real-package.stdout
+- spec/provider/package/yum/yum_-y_remove_screen.return
+- spec/provider/package/yum/yum_-y_remove_screen.stderr
+- spec/provider/package/yum/yum_-y_remove_screen.stdout
 - spec/provider/package/yum/yum_install_with_options.return
 - spec/provider/package/yum/yum_install_with_options.stderr
 - spec/provider/package/yum/yum_install_with_options.stdout
-- spec/provider/package/yum/yum_remove_-y_screen.return
-- spec/provider/package/yum/yum_remove_-y_screen.stderr
-- spec/provider/package/yum/yum_remove_-y_screen.stdout
 - spec/provider/package/yum/yum_remove_with_options.return
 - spec/provider/package/yum/yum_remove_with_options.stderr
 - spec/provider/package/yum/yum_remove_with_options.stdout
@@ -424,9 +442,13 @@ files:
 - spec/spec_helpers/fake_capture3.rb
 - spec/spec_helpers/test_coverage.rb
 - spec/util/activesupport_spec.rb
+- spec/util/erb_renderer_spec.rb
 - spec/util/file_owner_spec.rb
 - spec/util/file_permissions_spec.rb
+- spec/util/file_renderer_spec.rb
 - spec/util/file_spec.rb
+- spec/util/mustache_renderer_spec.rb
+- spec/util/pencil_mustache_spec.rb
 - spec/util/user_spec.rb
 - spec/util_spec.rb
 - man/wright.1
@@ -566,21 +588,21 @@ test_files:
 - spec/provider/package/apt/apt-cache_showpkg_suckless-tools.return
 - spec/provider/package/apt/apt-cache_showpkg_suckless-tools.stderr
 - spec/provider/package/apt/apt-cache_showpkg_suckless-tools.stdout
-- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.return
-- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.stderr
-- spec/provider/package/apt/apt-get_--purge_remove_-qy_abcde.stdout
-- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.return
-- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stderr
-- spec/provider/package/apt/apt-get_install_-qy_abcde=2.5.4-1.stdout
-- spec/provider/package/apt/apt-get_install_-qy_htop.return
-- spec/provider/package/apt/apt-get_install_-qy_htop.stderr
-- spec/provider/package/apt/apt-get_install_-qy_htop.stdout
-- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.return
-- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.stderr
-- spec/provider/package/apt/apt-get_install_-qy_not-a-real-package.stdout
-- spec/provider/package/apt/apt-get_remove_-qy_abcde.return
-- spec/provider/package/apt/apt-get_remove_-qy_abcde.stderr
-- spec/provider/package/apt/apt-get_remove_-qy_abcde.stdout
+- spec/provider/package/apt/apt-get_-qy_--purge_remove_abcde.return
+- spec/provider/package/apt/apt-get_-qy_--purge_remove_abcde.stderr
+- spec/provider/package/apt/apt-get_-qy_--purge_remove_abcde.stdout
+- spec/provider/package/apt/apt-get_-qy_install_abcde=2.5.4-1.return
+- spec/provider/package/apt/apt-get_-qy_install_abcde=2.5.4-1.stderr
+- spec/provider/package/apt/apt-get_-qy_install_abcde=2.5.4-1.stdout
+- spec/provider/package/apt/apt-get_-qy_install_htop.return
+- spec/provider/package/apt/apt-get_-qy_install_htop.stderr
+- spec/provider/package/apt/apt-get_-qy_install_htop.stdout
+- spec/provider/package/apt/apt-get_-qy_install_not-a-real-package.return
+- spec/provider/package/apt/apt-get_-qy_install_not-a-real-package.stderr
+- spec/provider/package/apt/apt-get_-qy_install_not-a-real-package.stdout
+- spec/provider/package/apt/apt-get_-qy_remove_abcde.return
+- spec/provider/package/apt/apt-get_-qy_remove_abcde.stderr
+- spec/provider/package/apt/apt-get_-qy_remove_abcde.stdout
 - spec/provider/package/apt_spec.rb
 - spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.return
 - spec/provider/package/homebrew/brew_info_--json=v1_cd-discid.stderr
@@ -613,21 +635,21 @@ test_files:
 - spec/provider/package/yum/rpm_-q_zsh.return
 - spec/provider/package/yum/rpm_-q_zsh.stderr
 - spec/provider/package/yum/rpm_-q_zsh.stdout
-- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.return
-- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.stderr
-- spec/provider/package/yum/yum_install_-y_mc-4.8.7-8.el7.stdout
-- spec/provider/package/yum/yum_install_-y_nano.return
-- spec/provider/package/yum/yum_install_-y_nano.stderr
-- spec/provider/package/yum/yum_install_-y_nano.stdout
-- spec/provider/package/yum/yum_install_-y_not-a-real-package.return
-- spec/provider/package/yum/yum_install_-y_not-a-real-package.stderr
-- spec/provider/package/yum/yum_install_-y_not-a-real-package.stdout
+- spec/provider/package/yum/yum_-y_install_mc-4.8.7-8.el7.return
+- spec/provider/package/yum/yum_-y_install_mc-4.8.7-8.el7.stderr
+- spec/provider/package/yum/yum_-y_install_mc-4.8.7-8.el7.stdout
+- spec/provider/package/yum/yum_-y_install_nano.return
+- spec/provider/package/yum/yum_-y_install_nano.stderr
+- spec/provider/package/yum/yum_-y_install_nano.stdout
+- spec/provider/package/yum/yum_-y_install_not-a-real-package.return
+- spec/provider/package/yum/yum_-y_install_not-a-real-package.stderr
+- spec/provider/package/yum/yum_-y_install_not-a-real-package.stdout
+- spec/provider/package/yum/yum_-y_remove_screen.return
+- spec/provider/package/yum/yum_-y_remove_screen.stderr
+- spec/provider/package/yum/yum_-y_remove_screen.stdout
 - spec/provider/package/yum/yum_install_with_options.return
 - spec/provider/package/yum/yum_install_with_options.stderr
 - spec/provider/package/yum/yum_install_with_options.stdout
-- spec/provider/package/yum/yum_remove_-y_screen.return
-- spec/provider/package/yum/yum_remove_-y_screen.stderr
-- spec/provider/package/yum/yum_remove_-y_screen.stdout
 - spec/provider/package/yum/yum_remove_with_options.return
 - spec/provider/package/yum/yum_remove_with_options.stderr
 - spec/provider/package/yum/yum_remove_with_options.stdout
@@ -688,9 +710,13 @@ test_files:
 - spec/spec_helpers/fake_capture3.rb
 - spec/spec_helpers/test_coverage.rb
 - spec/util/activesupport_spec.rb
+- spec/util/erb_renderer_spec.rb
 - spec/util/file_owner_spec.rb
 - spec/util/file_permissions_spec.rb
+- spec/util/file_renderer_spec.rb
 - spec/util/file_spec.rb
+- spec/util/mustache_renderer_spec.rb
+- spec/util/pencil_mustache_spec.rb
 - spec/util/user_spec.rb
 - spec/util_spec.rb
 has_rdoc: 

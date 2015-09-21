@@ -17,21 +17,20 @@ Performing simple administrative tasks with wright is easy.
 
 package 'sudo'
 
-file '/etc/sudoers.d/env_keep-editor' do |f|
-  f.content = "Defaults env_keep += EDITOR\n"
-  f.owner   = 'root:root'
-  f.mode    = '440'
-end
+file '/etc/sudoers.d/env_keep-editor',
+     content: "Defaults env_keep += EDITOR\n",
+     owner:   'root:root',
+     mode:    '440'
 ```
 
 Scripts can also be run directly from the shell.
 
-    wright -e "package('tmux')"
+    wright -e "package 'tmux'"
 
 If you would rather see the effects of running a wright script first,
 use the dry-run option:
 
-    wright --dry-run -e "package('tmux')"
+    wright --dry-run -e "package 'tmux'"
 
 For a list of command-line parameters, see
 [the manpage][wright-manpage]. For a more in-depth list of tasks you
@@ -68,24 +67,17 @@ interest to you:
 - [wright manpage][wright-manpage]
 - [list of wright resources][wright-resources]
 - [wright is just Ruby][wright-is-ruby]
+- [list of supported platforms][wright-platforms]
 
 As a wright developer, you might also be interested in the
 [wright developer docs](http://www.rubydoc.info/gems/wright/) which
-can also be generated via `bundle exec yard`.
+can be generated via `bundle exec yard`.
 
 Contributing
 ------------
 Contributions to wright are greatly appreciated. If you would like to
 contribute to wright, please have a look at the
 [contribution guidelines](CONTRIBUTING.md).
-
-To start hacking on wright, simply install the development
-dependencies via bundler:
-
- - `bundle install --path .bundle`
- - `bundle exec rake test`
-
-All tests should pass.
 
 Copyright
 ---------
@@ -100,3 +92,4 @@ details.
 [wright-manpage]: http://wright.sometimesfood.org/man/wright.1.html
 [wright-resources]: http://wright.sometimesfood.org/doc/resources.html
 [wright-is-ruby]: http://wright.sometimesfood.org/doc/wright-is-ruby.html
+[wright-platforms]: http://wright.sometimesfood.org/doc/supported-platforms.html

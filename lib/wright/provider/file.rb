@@ -14,7 +14,7 @@ module Wright
       # Creates or updates the file.
       #
       # @return [void]
-      # @raise [Errno::EISDIR] if there is already a directory with
+      # @raise [Errno::EISDIR] if there already is a directory with
       #   the specified name
       def create
         fail_if_directory
@@ -44,15 +44,15 @@ module Wright
       private
 
       def file_name
-        @resource.name
+        resource.name
       end
 
       def content
-        @resource.content
+        resource.content
       end
 
       def permissions
-        Wright::Util::FilePermissions.create_from_resource(@resource, :file)
+        Wright::Util::FilePermissions.create_from_resource(resource, :file)
       end
 
       def write_content_to_file

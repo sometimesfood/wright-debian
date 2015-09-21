@@ -1,6 +1,5 @@
 require_relative 'spec_helper'
 
-require 'minitest/stub_const'
 require 'wright/util'
 
 describe Wright::Util do
@@ -95,9 +94,9 @@ EOS
 
     after(:each) { FakeFS::FileSystem.clear }
 
-    it 'should detect MacOS X' do
+    it 'should detect OS X' do
       stub_os('darwin13') do
-        Wright::Util.os_family.must_equal 'macosx'
+        Wright::Util.os_family.must_equal 'osx'
       end
     end
 
@@ -153,6 +152,21 @@ EOS
         end
       end
       mock.verify
+    end
+  end
+
+  describe 'fetch_last' do
+    it 'should fetch the value of the last candidate key from a hash' do
+      hash = { candidate1: :value1, candidate2: :value2, foo: :bar }
+      candidates = [:candidate2, :candidate1]
+      Wright::Util.fetch_last(hash, candidates).must_equal :value2
+    end
+
+    it 'should return the default value if no candidate key is found' do
+      hash = { foo: :foo, bar: :bar, baz: :baz }
+      candidates = [:qux, :quux]
+      Wright::Util.fetch_last(hash, candidates).must_be_nil
+      Wright::Util.fetch_last(hash, candidates, :default).must_equal :default
     end
   end
 end
